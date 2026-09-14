@@ -134,7 +134,7 @@ useEffect(() => {
 
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <View>
             <ThemedText type="title" style={styles.title}>
@@ -146,7 +146,22 @@ useEffect(() => {
               </ThemedText>
             )}
           </View>
-          <Button title="+" onPress={() => setModalVisible(true)} />
+          <Pressable
+            onPress={() => {
+              setError(null);
+              setModalVisible(true);
+            }}
+            style={({ pressed }) => [
+              styles.fab,
+              { backgroundColor: theme.text },
+              pressed && { opacity: 0.8 },
+            ]}
+            accessibilityRole="button"
+            accessibilityLabel="Create a new room">
+            <ThemedText style={[styles.fabIcon, { color: theme.background }]}>
+              +
+            </ThemedText>
+          </Pressable>
         </View>
 
         <FlatList
@@ -198,20 +213,27 @@ useEffect(() => {
 
         <Button title="Log out" onPress={handleLogout} />
       </SafeAreaView>
-
       {/* Create Room Modal */}
       <Modal visible={modalVisible} transparent animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={() => setModalVisible(false)}>
-          <Pressable style={[styles.modalContent, { backgroundColor: theme.background }]} onPress={(e) => e.stopPropagation()}>
+          <Pressable
+            style={[styles.modalContent, { backgroundColor: theme.background }]}
+            onPress={(e) => e.stopPropagation()}>
+            <View style={[styles.modalHandle, { backgroundColor: theme.backgroundSelected }]} />
             <ThemedText type="title" style={styles.modalTitle}>
               New Room
             </ThemedText>
+            <ThemedText themeColor="textSecondary" style={styles.modalSubtitle}>
+              Pick a name people will recognise
+            </ThemedText>
             <TextInput
-              placeholder="Room name"
+              placeholder="e.g. Weekend Football"
               placeholderTextColor={theme.textSecondary}
               value={newRoomName}
               onChangeText={setNewRoomName}
               autoFocus
+              onSubmitEditing={handleCreateRoom}
+              returnKeyType="done"
               style={[styles.modalInput, { backgroundColor: theme.backgroundElement, color: theme.text }]}
             />
             {error && (
@@ -220,8 +242,22 @@ useEffect(() => {
               </ThemedText>
             )}
             <View style={styles.modalButtons}>
-              <Button title="Cancel" onPress={() => setModalVisible(false)} />
-              <Button title="Create" onPress={handleCreateRoom} loading={creating} />
+              <View style={styles.modalButtonWrap}>
+                <Button
+                  title="Cancel"
+                  variant="secondary"
+                  onPress={() => setModalVisible(false)}
+                  disabled={creating}
+                />
+              </View>
+              <View style={styles.modalButtonWrap}>
+                <Button
+                  title="Create"
+                  onPress={handleCreateRoom}
+                  loading={creating}
+                  disabled={!newRoomName.trim()}
+                />
+              </View>
             </View>
           </Pressable>
         </Pressable>
@@ -295,21 +331,51 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 14,
   },
+  fab: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  fabIcon: {
+    fontSize: 28,
+    lineHeight: 32,
+    fontWeight: '400',
+    marginTop: -2,
+  },
   // Modal
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   modalContent: {
-    width: '85%',
-    borderRadius: 16,
-    padding: Spacing.four,
-    gap: Spacing.three,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    paddingHorizontal: Spacing.four,
+    paddingTop: Spacing.two,
+    paddingBottom: Spacing.five,
+    gap: Spacing.two,
+  },
+  modalHandle: {
+    alignSelf: 'center',
+    width: 40,
+    height: 4,
+    borderRadius: 2,
+    marginBottom: Spacing.two,
   },
   modalTitle: {
     textAlign: 'center',
+  },
+  modalSubtitle: {
+    textAlign: 'center',
+    marginBottom: Spacing.two,
   },
   modalInput: {
     height: 48,
@@ -320,6 +386,10 @@ const styles = StyleSheet.create({
   modalButtons: {
     flexDirection: 'row',
     gap: Spacing.two,
+    marginTop: Spacing.two,
+  },
+  modalButtonWrap: {
+    flex: 1,
   },
   error: {
     textAlign: 'center',

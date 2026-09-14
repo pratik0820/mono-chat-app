@@ -7,11 +7,14 @@ type ButtonProps = {
   onPress: () => void;
   disabled?: boolean;
   loading?: boolean;
+  /** 'primary' = filled, 'secondary' = subtle/outlined. Default: primary */
+  variant?: 'primary' | 'secondary';
 };
 
-export function Button({ title, onPress, disabled, loading }: ButtonProps) {
+export function Button({ title, onPress, disabled, loading, variant = 'primary' }: ButtonProps) {
   const theme = useTheme();
   const isDisabled = disabled || loading;
+  const isSecondary = variant === 'secondary';
 
   return (
     <Pressable
@@ -19,13 +22,27 @@ export function Button({ title, onPress, disabled, loading }: ButtonProps) {
       disabled={isDisabled}
       style={({ pressed }) => [
         styles.button,
-        { backgroundColor: pressed ? theme.backgroundSelected : theme.text },
+        isSecondary
+          ? [
+              styles.secondary,
+              { borderColor: theme.backgroundSelected },
+              pressed && { backgroundColor: theme.backgroundSelected },
+            ]
+          : [
+              { backgroundColor: pressed ? theme.backgroundSelected : theme.text },
+            ],
         isDisabled && styles.disabled,
       ]}>
       {loading ? (
-        <ActivityIndicator color={theme.background} />
+        <ActivityIndicator color={isSecondary ? theme.text : theme.background} />
       ) : (
-        <Text style={[styles.label, { color: theme.background }]}>{title}</Text>
+        <Text
+          style={[
+            styles.label,
+            { color: isSecondary ? theme.text : theme.background },
+          ]}>
+          {title}
+        </Text>
       )}
     </Pressable>
   );
@@ -37,6 +54,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  secondary: {
+    backgroundColor: 'transparent',
+    borderWidth: 1.5,
   },
   disabled: {
     opacity: 0.5,

@@ -18,10 +18,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
 
       - name: Install Dependencies
         working-directory: mobile
-        run: npm install
+        run: npm ci
 
       - name: Point app at production backend
         working-directory: mobile
@@ -40,11 +42,21 @@ jobs:
         working-directory: mobile
         run: npx expo prebuild --platform android
 
+      - name: Setup Gradle caching
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('mobile/android/**/*.gradle*', 'mobile/android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: Build Android Release APK
         working-directory: mobile/android
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --build-cache --parallel
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
