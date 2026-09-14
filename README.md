@@ -480,6 +480,7 @@ CREATE INDEX idx_messages_room_id_id ON messages (room_id, id DESC);
 - **Physical device**: Use your computer's LAN IP (e.g., `http://192.168.1.100:8085`)
 - Ensure the backend is bound to `0.0.0.0` (default in this project)
 - Check firewall isn't blocking the connection
+- **CI-built APK**: The workflow writes `EXPO_PUBLIC_API_URL` into `mobile/.env.local` before `expo prebuild`, so release APKs point at the EC2 backend (`http://18.212.79.35:8085`). Locally, Expo loads `.env.local` before `.env`, so a local `.env.local` overrides the committed `mobile/.env` — don't commit your local override. Release builds also need cleartext HTTP enabled (`usesCleartextTraffic: true` via `expo-build-properties` in `app.json`); without it, Android blocks all `http://` requests in release builds while debug builds keep working.
 
 ### WebSocket connection fails
 
