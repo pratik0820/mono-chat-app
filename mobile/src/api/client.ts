@@ -3,11 +3,10 @@ import axios from 'axios';
 
 /**
  * Backend base URL.
- * - Android emulator: 10.0.2.2 reaches your machine's localhost.
- * - Physical device (e.g. Pixel): use your computer's LAN IP, e.g. http://192.168.1.20:8080.
- *   Override via mobile/.env.local -> EXPO_PUBLIC_API_URL=http://<LAN-IP>:8080
+ * - Live AWS EC2 Instance: http://18.212.79.35:8085
+ * - Override via mobile/.env.local -> EXPO_PUBLIC_API_URL=http://<LAN-IP>:8085
  */
-export const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://192.168.1.135:8085';
+export const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://18.212.79.35:8085';
 
 if (__DEV__) {
   console.log('[API] Base URL:', API_URL);
