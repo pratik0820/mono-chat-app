@@ -32,6 +32,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Expo Prebuild (Generate Android Native Project)
+        working-directory: mobile
+        run: npx expo prebuild --platform android
+
       - name: Build Android Release APK
         working-directory: mobile/android
         run: |
@@ -39,7 +43,7 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
           path: mobile/android/app/build/outputs/apk/release/app-release.apk
