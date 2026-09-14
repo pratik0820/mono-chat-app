@@ -19,6 +19,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
+        working-directory: mobile
         run: npm install
 
       - name: Set up JDK 17
@@ -31,8 +32,8 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Build Android Release APK
+        working-directory: mobile/android
         run: |
-          cd android
           chmod +x gradlew
           ./gradlew assembleRelease
 
@@ -40,4 +41,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: mobile/android/app/build/outputs/apk/release/app-release.apk

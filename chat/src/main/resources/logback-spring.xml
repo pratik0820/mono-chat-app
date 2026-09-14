@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="chat"/>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         PROPERTIES
+         ════════════════════════════════════════════════════════════════════ -->
+    <property name="LOG_DIR"       value="logs"/>
+    <property name="LOG_MAX_SIZE"  value="10MB"/>
+    <property name="LOG_MAX_HISTORY" value="30"/>
+    <property name="LOG_TOTAL_CAP" value="1GB"/>
+
+    <!-- Human-readable pattern for console & file appenders -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) [%thread] [%X{correlationId:-}] %cyan(%logger{36}) - %msg%n"/>
+
+    <!-- JSON fields pattern (Logstash format) -->
+    <property name="JSON_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] [%X{correlationId:-}] %logger{36} - %msg%n"/>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         CONSOLE APPENDER (always active)
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         APPLICATION LOG FILE — logs/application.log
+         Rolling: 10MB per file, daily rollover, 30 days retention, 1GB cap
+         Old files compressed to .gz
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/application.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_CAP}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         ACCESS LOG — logs/access.log
+         HTTP request/response logging with timing and correlation ID
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/access.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_CAP}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         ERROR LOG — logs/error.log
+         Only ERROR level — useful for alerting and crash analysis
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_CAP}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         SECURITY LOG — logs/security.log
+         Authentication events, authorization failures, suspicious activity
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="SECURITY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/security.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/security.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_CAP}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         JSON APPENDER — logs/json/application.json
+         Structured JSON (Logstash format) for production / ELK / Loki
+         ════════════════════════════════════════════════════════════════════ -->
+    <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/json/application.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/application.%d{yyyy-MM-dd}.%i.json.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_CAP}</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdcKeyName>correlationId</includeMdcKeyName>
+            <includeMdcKeyName>userId</includeMdcKeyName>
+            <includeMdcKeyName>clientIp</includeMdcKeyName>
+            <fieldNames>
+                <timestamp>[ignore]</timestamp>
+            </fieldNames>
+            <customFields>{"app":"${APP_NAME}"}</customFields>
+        </encoder>
+    </appender>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         LOGGERS — per-package log levels
+         ════════════════════════════════════════════════════════════════════ -->
+
+    <!-- Our application: DEBUG (change to INFO in production) -->
+    <logger name="com.example.chat" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APPLICATION"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="JSON"/>
+    </logger>
+
+    <!-- Security-specific: route to security.log -->
+    <logger name="com.example.chat.security" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SECURITY"/>
+        <appender-ref ref="APPLICATION"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <!-- Access log: HTTP request/response details -->
+    <logger name="com.example.chat.common.RequestLoggingFilter" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS"/>
+        <appender-ref ref="APPLICATION"/>
+    </logger>
+
+    <!-- Spring Security: WARN (noisy at INFO) -->
+    <logger name="org.springframework.security" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SECURITY"/>
+        <appender-ref ref="APPLICATION"/>
+    </logger>
+
+    <!-- Hibernate SQL: WARN (set to DEBUG to see all SQL queries) -->
+    <logger name="org.hibernate.SQL" level="WARN"/>
+    <logger name="org.hibernate.orm.jdbc.bind" level="WARN"/>
+
+    <!-- Spring Web / MVC: WARN -->
+    <logger name="org.springframework.web" level="WARN"/>
+    <logger name="org.springframework.web.servlet" level="WARN"/>
+
+    <!-- Tomcat: WARN -->
+    <logger name="org.apache.catalina" level="WARN"/>
+    <logger name="org.apache.tomcat" level="WARN"/>
+
+    <!-- Redis / Lettuce: WARN -->
+    <logger name="io.lettuce.core" level="WARN"/>
+
+    <!-- Hibernate DDL: INFO -->
+    <logger name="org.hibernate.tool.hbm2ddl" level="INFO"/>
+
+    <!-- Root logger: INFO for everything else -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APPLICATION"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="JSON"/>
+    </root>
+
+</configuration>
