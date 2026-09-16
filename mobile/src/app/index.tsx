@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { getStoredToken, loginRequest, storeAuth, API_URL } from '@/api/client';
 import { Button } from '@/components/button';
@@ -9,6 +9,7 @@ import { FormInput } from '@/components/form-input';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 
 function errorMessage(e: unknown): string {
   const err = e as any;
@@ -26,6 +27,8 @@ function errorMessage(e: unknown): string {
 
 export default function LoginScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const keyboardHeight = useKeyboardHeight();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -61,15 +64,18 @@ export default function LoginScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <KeyboardAvoidingView
-          style={styles.flex}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}>
-          <ScrollView
-            contentContainerStyle={styles.content}
-            keyboardShouldPersistTaps="handled"
-            keyboardDismissMode="on-drag">
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <ScrollView
+          contentContainerStyle={[
+            styles.content,
+            {
+              // Manual keyboard avoidance (KeyboardAvoidingView is unreliable
+              // with edge-to-edge). Also keeps the button clear of the nav bar.
+              paddingBottom: keyboardHeight + insets.bottom + Spacing.six,
+            },
+          ]}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag">
             <Image source={require('../../assets/images/icon.png')} style={styles.logo} />
             <ThemedText type="title" style={styles.title}>
               Mono
@@ -100,7 +106,6 @@ export default function LoginScreen() {
               </ThemedText>
             </Pressable>
           </ScrollView>
-        </KeyboardAvoidingView>
       </SafeAreaView>
     </ThemedView>
   );

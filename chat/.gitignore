@@ -34,3 +34,5 @@ build/
 
 # Application logs
 logs/
+
+uploads/

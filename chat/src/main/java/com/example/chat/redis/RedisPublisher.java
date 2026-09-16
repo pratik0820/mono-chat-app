@@ -2,6 +2,7 @@ package com.example.chat.redis;
 
 import com.example.chat.message.ChatMessageEvent;
 import com.example.chat.message.TypingEvent;
+import com.example.chat.theme.ThemeUpdatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -45,6 +46,18 @@ public class RedisPublisher {
      */
     public void publishTypingIndicator(Long roomId, TypingEvent event) {
         String channel = "chat.room." + roomId + ".typing";
+        redisTemplate.convertAndSend(channel, event);
+        log.info("[Redis] Published to {}: {}", channel, event);
+    }
+
+    /**
+     * Publish a theme update event to the Redis channel for the given room.
+     *
+     * @param roomId the room whose theme changed
+     * @param event  the serialized theme update payload
+     */
+    public void publishThemeUpdated(Long roomId, ThemeUpdatedEvent event) {
+        String channel = "chat.room." + roomId + ".theme";
         redisTemplate.convertAndSend(channel, event);
         log.info("[Redis] Published to {}: {}", channel, event);
     }

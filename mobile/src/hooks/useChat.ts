@@ -43,7 +43,9 @@ interface UseChatReturn {
  * - Merges REST history with live WebSocket messages
  * - Handles reconnection and cleanup
  */
-export function useChat({ roomId, userId }: UseChatOptions): UseChatReturn {
+export function useChat({ roomId, userId, onThemeUpdated }: UseChatOptions & {
+  onThemeUpdated?: ((theme: { themeId?: string; imageUrl?: string; updatedBy: number }) => void) | null;
+}): UseChatReturn {
   const [messages, setMessages] = useState<MessageDto[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -51,6 +53,10 @@ export function useChat({ roomId, userId }: UseChatOptions): UseChatReturn {
   const [connected, setConnected] = useState(false);
   const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
   const typingTimeoutsRef = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map());
+
+  // Keep the latest theme callback in a ref so the WS handler stays stable
+  const onThemeUpdatedRef = useRef(onThemeUpdated);
+  onThemeUpdatedRef.current = onThemeUpdated;
 
   const roomIdRef = useRef(roomId);
   roomIdRef.current = roomId;
@@ -163,6 +169,16 @@ export function useChat({ roomId, userId }: UseChatOptions): UseChatReturn {
     (frame: any) => {
       try {
         const msg: MessageDto = JSON.parse(frame.body);
+
+        // Theme update control event — not a chat message
+        if ((msg as any).type === 'THEME_UPDATED') {
+          onThemeUpdatedRef.current?.({
+            themeId: (msg as any).themeId,
+            imageUrl: (msg as any).imageUrl,
+            updatedBy: (msg as any).updatedBy,
+          });
+          return;
+        }
 
         // Check if we already have this message by exact ID
         if (messageIdsRef.current.has(msg.id)) {

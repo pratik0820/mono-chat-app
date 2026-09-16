@@ -4,33 +4,69 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
-  KeyboardAvoidingView,
-  Platform,
   Pressable,
   StyleSheet,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image as ExpoImage } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { getRoom, getStoredUser, type MessageDto, type RoomDto, type UserDto } from '@/api/client';
+import {
+  API_URL,
+  getRoom,
+  getRoomTheme,
+  getStoredUser,
+  uploadRoomThemeImage,
+  clearRoomTheme,
+  setRoomTheme as apiSetRoomTheme,
+  type MessageDto,
+  type RoomDto,
+  type UserDto,
+} from '@/api/client';
 import { MediaInputBar } from '@/components/MediaInputBar';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { ThemeSheet } from '@/components/ThemeSheet';
 import { Spacing } from '@/constants/theme';
+import {
+  type BuiltinThemeId,
+  getBuiltinTheme,
+  resolveRoomTheme,
+} from '@/constants/chatThemes';
 import { isSingleEmoji } from '@/data/emojis';
 import { useChat } from '@/hooks/useChat';
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 import { useTheme } from '@/hooks/use-theme';
+
+/** Prefix backend-relative theme image URLs (e.g. /files/xyz.jpg) with the API origin. */
+function themeImageUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  // Local (optimistic) or absolute URLs pass through untouched
+  if (/^(http|file|content)/.test(url)) return url;
+  // API_URL has no trailing slash and url starts with '/', so simple concat works
+  return `${API_URL}${url}`;
+}
 
 export default function ChatScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const roomId = Number(id);
   const router = useRouter();
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
+  const keyboardHeight = useKeyboardHeight();
 
   const [user, setUser] = useState<UserDto | null>(null);
   const [room, setRoom] = useState<RoomDto | null>(null);
   const [inputText, setInputText] = useState('');
   const [sending, setSending] = useState(false);
+
+  // ─── Chat theme state ─────────────────────────────────
+  const [themeSheetVisible, setThemeSheetVisible] = useState(false);
+  const [roomTheme, setRoomTheme] = useState<{ themeId: string | null; imageUrl: string | null }>({
+    themeId: null,
+    imageUrl: null,
+  });
 
   const flatListRef = useRef<FlatList>(null);
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -54,6 +90,21 @@ export default function ChatScreen() {
     })();
   }, [router, roomId]);
 
+  // Load the room theme once the user is known
+  const fetchRoomTheme = useCallback(async () => {
+    try {
+      const t = await getRoomTheme(roomId);
+      setRoomTheme({ themeId: t?.themeId ?? null, imageUrl: t?.imageUrl ?? null });
+    } catch {
+      // Backend without theme endpoints yet — fall back to default silently
+      setRoomTheme({ themeId: null, imageUrl: null });
+    }
+  }, [roomId]);
+
+  useEffect(() => {
+    if (user) fetchRoomTheme();
+  }, [user, fetchRoomTheme]);
+
   // Use the useChat hook for real-time messaging
   const {
     messages,
@@ -69,7 +120,55 @@ export default function ChatScreen() {
   } = useChat({
     roomId,
     userId: user?.id ?? 0,
+    onThemeUpdated: (t) => {
+      // Someone (possibly us — ignore own echoes) changed the room theme
+      setRoomTheme({ themeId: t.themeId ?? null, imageUrl: t.imageUrl ?? null });
+    },
   });
+
+  // ─── Chat theme handlers ──────────────────────────────
+  const handleApplyBuiltinTheme = useCallback(
+    async (id: BuiltinThemeId) => {
+      // Optimistic update; revert on failure
+      const prev = roomTheme;
+      setRoomTheme({ themeId: id, imageUrl: null });
+      try {
+        await apiSetRoomTheme(roomId, id);
+      } catch (e) {
+        console.error('[ChatScreen] Failed to set theme:', e);
+        setRoomTheme(prev);
+        throw e; // let ThemeSheet show the error
+      }
+    },
+    [roomId, roomTheme]
+  );
+
+  const handleApplyImageTheme = useCallback(
+    async (localUri: string) => {
+      const prev = roomTheme;
+      // Optimistic: show the picked image immediately
+      setRoomTheme({ themeId: null, imageUrl: localUri });
+      try {
+        const t = await uploadRoomThemeImage(roomId, localUri, `room-${roomId}-theme.jpg`);
+        setRoomTheme({ themeId: t.themeId ?? null, imageUrl: t.imageUrl ?? localUri });
+      } catch (e) {
+        setRoomTheme(prev);
+        throw e;
+      }
+    },
+    [roomId, roomTheme]
+  );
+
+  const handleRemoveTheme = useCallback(async () => {
+    const prev = roomTheme;
+    setRoomTheme({ themeId: null, imageUrl: null });
+    try {
+      await clearRoomTheme(roomId);
+    } catch (e) {
+      setRoomTheme(prev);
+      throw e;
+    }
+  }, [roomId, roomTheme]);
 
   // Send text message
   const handleSend = useCallback(async () => {
@@ -227,16 +326,52 @@ export default function ChatScreen() {
     );
   }
 
+  // The keyboard overlaps the input because edge-to-edge Android disables
+  // adjustResize (making KeyboardAvoidingView unreliable). Pad the layout
+  // manually with the measured keyboard height instead.
+  const keyboardPadding = Math.max(0, keyboardHeight - insets.bottom);
+
+  // ─── Resolved room theme (background) ─────────────────
+  const bg = resolveRoomTheme(roomTheme.themeId, roomTheme.imageUrl);
+  const isCustomBg = bg.kind === 'image';
+  const accentText =
+    bg.kind === 'builtin' && bg.builtin && bg.builtin.id !== 'default'
+      ? bg.builtin.textOnTheme
+      : null;
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea} edges={['top']}>
+        {/* Room theme background layer (behind everything) */}
+        {isCustomBg && bg.imageUrl ? (
+          <ExpoImage
+            source={{ uri: themeImageUrl(bg.imageUrl) ?? undefined }}
+            style={StyleSheet.absoluteFill}
+            contentFit="cover"
+            transition={200}
+          />
+        ) : (
+          <LinearGradient
+            colors={
+              bg.builtin && bg.builtin.id !== 'default'
+                ? bg.builtin.colors
+                : [theme.background, theme.background]
+            }
+            style={StyleSheet.absoluteFill}
+          />
+        )}
+        {/* Scrim keeps text readable over busy custom photos */}
+        {isCustomBg && <View style={[StyleSheet.absoluteFill, styles.themeScrim]} />}
+
         {/* Header */}
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} style={styles.backButton}>
-            <ThemedText style={styles.backText}>←</ThemedText>
+            <ThemedText style={[styles.backText, accentText ? { color: accentText } : null]}>
+              ←
+            </ThemedText>
           </Pressable>
           <View style={styles.headerCenter}>
-            <ThemedText type="title" style={styles.title}>
+            <ThemedText type="title" style={[styles.title, accentText ? { color: accentText } : null]}>
               {room?.name ?? `Room #${roomId}`}
             </ThemedText>
             <View style={styles.connectionStatus}>
@@ -246,11 +381,21 @@ export default function ChatScreen() {
                   { backgroundColor: connected ? '#4ade80' : '#f87171' },
                 ]}
               />
-              <ThemedText themeColor="textSecondary" style={styles.statusText}>
+              <ThemedText
+                themeColor="textSecondary"
+                style={[styles.statusText, accentText ? { color: accentText } : null]}>
                 {connected ? 'Connected' : 'Disconnected'}
               </ThemedText>
             </View>
           </View>
+          {/* Theme picker button */}
+          <Pressable
+            onPress={() => setThemeSheetVisible(true)}
+            style={({ pressed }) => [styles.themeButton, pressed && { opacity: 0.6 }]}
+            accessibilityRole="button"
+            accessibilityLabel="Change chat theme">
+            <ThemedText style={styles.themeButtonText}>🖼️</ThemedText>
+          </Pressable>
         </View>
 
         {/* Typing indicator */}
@@ -265,10 +410,7 @@ export default function ChatScreen() {
         )}
 
         {/* Messages */}
-        <KeyboardAvoidingView
-          style={styles.flex}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+        <View style={styles.flex}>
           <FlatList
             ref={flatListRef}
             data={messages}
@@ -279,6 +421,7 @@ export default function ChatScreen() {
             onEndReachedThreshold={0.5}
             renderItem={renderMessage}
             keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="interactive"
             ListFooterComponent={
               loadingMore ? (
                 <ActivityIndicator
@@ -305,8 +448,22 @@ export default function ChatScreen() {
             onSendMedia={handleSendMedia}
             sending={sending}
           />
-        </KeyboardAvoidingView>
+          {/* Pad the bottom by the keyboard height so the input stays visible
+              while typing, and by the nav-bar inset so nothing hides behind
+              gesture/3-button navigation. */}
+          <View style={{ height: keyboardPadding + insets.bottom }} />
+        </View>
       </SafeAreaView>
+
+      {/* Theme picker sheet */}
+      <ThemeSheet
+        visible={themeSheetVisible}
+        current={roomTheme}
+        onClose={() => setThemeSheetVisible(false)}
+        onApplyBuiltin={handleApplyBuiltinTheme}
+        onApplyImage={handleApplyImageTheme}
+        onRemove={handleRemoveTheme}
+      />
     </ThemedView>
   );
 }
@@ -330,6 +487,19 @@ const styles = StyleSheet.create({
   },
   backButton: {
     padding: Spacing.two,
+  },
+  themeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  themeButtonText: {
+    fontSize: 20,
+  },
+  themeScrim: {
+    backgroundColor: 'rgba(0,0,0,0.22)',
   },
   backText: {
     fontSize: 24,

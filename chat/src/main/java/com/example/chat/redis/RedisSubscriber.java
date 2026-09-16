@@ -2,6 +2,7 @@ package com.example.chat.redis;
 
 import com.example.chat.message.ChatMessageEvent;
 import com.example.chat.message.TypingEvent;
+import com.example.chat.theme.ThemeUpdatedEvent;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +61,14 @@ public class RedisSubscriber {
                             event
                     );
                     log.debug("[Redis] Pushed typing event for room {} to local sessions", roomId);
+                } else if (channelSuffix.endsWith(".theme")) {
+                    // - Theme update -
+                    Long roomId = Long.parseLong(channelSuffix.replace(".theme", ""));
+                    ThemeUpdatedEvent event = objectMapper.readValue(body, ThemeUpdatedEvent.class);
+                    messagingTemplate.convertAndSend(
+                            "/topic/room." + roomId, event
+                    );
+                    log.debug("[Redis] Pushed theme update for room {} to local sessions", roomId);
                 } else {
                     // - Chat message -
                     Long roomId = Long.parseLong(channelSuffix);

@@ -32,6 +32,12 @@
     "plugins": [
       "expo-router",
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allows Mono to pick a photo as the chat background."
+        }
+      ],
+      [
         "expo-build-properties",
         {
           "android": {

@@ -3,6 +3,7 @@ package com.example.chat.room;
 import com.example.chat.room.dto.CreateRoomRequest;
 import com.example.chat.room.dto.RoomDto;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,12 @@ public class RoomController {
     public RoomDto joinRoom(@PathVariable Long roomId) {
         Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return roomService.joinRoom(roomId, userId);
+    }
+
+    @DeleteMapping("/{roomId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRoom(@PathVariable Long roomId) {
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        roomService.deleteRoom(roomId, userId);
     }
 }

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Pressable, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, type StyleProp, ViewStyle } from 'react-native';
 
 import { useTheme } from '@/hooks/use-theme';
 
@@ -7,14 +7,17 @@ type ButtonProps = {
   onPress: () => void;
   disabled?: boolean;
   loading?: boolean;
-  /** 'primary' = filled, 'secondary' = subtle/outlined. Default: primary */
-  variant?: 'primary' | 'secondary';
+  /** 'primary' = filled, 'secondary' = subtle/outlined, 'danger' = destructive (red). Default: primary */
+  variant?: 'primary' | 'secondary' | 'danger';
+  /** Optional extra styling for the pressable container. */
+  style?: StyleProp<ViewStyle>;
 };
 
-export function Button({ title, onPress, disabled, loading, variant = 'primary' }: ButtonProps) {
+export function Button({ title, onPress, disabled, loading, variant = 'primary', style }: ButtonProps) {
   const theme = useTheme();
   const isDisabled = disabled || loading;
   const isSecondary = variant === 'secondary';
+  const isDanger = variant === 'danger';
 
   return (
     <Pressable
@@ -22,24 +25,25 @@ export function Button({ title, onPress, disabled, loading, variant = 'primary' 
       disabled={isDisabled}
       style={({ pressed }) => [
         styles.button,
+        style,
         isSecondary
           ? [
               styles.secondary,
               { borderColor: theme.backgroundSelected },
               pressed && { backgroundColor: theme.backgroundSelected },
             ]
-          : [
-              { backgroundColor: pressed ? theme.backgroundSelected : theme.text },
-            ],
+          : isDanger
+            ? [{ backgroundColor: pressed ? '#b91c1c' : '#dc2626' }]
+            : [{ backgroundColor: pressed ? theme.backgroundSelected : theme.text }],
         isDisabled && styles.disabled,
       ]}>
       {loading ? (
-        <ActivityIndicator color={isSecondary ? theme.text : theme.background} />
+        <ActivityIndicator color={isSecondary || isDanger ? '#ffffff' : theme.background} />
       ) : (
         <Text
           style={[
             styles.label,
-            { color: isSecondary ? theme.text : theme.background },
+            { color: isSecondary ? theme.text : isDanger ? '#ffffff' : theme.background },
           ]}>
           {title}
         </Text>

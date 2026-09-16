@@ -1,7 +1,9 @@
 package com.example.chat.room;
 
+import com.example.chat.message.MessageRepository;
 import com.example.chat.room.dto.CreateRoomRequest;
 import com.example.chat.room.dto.RoomDto;
+import com.example.chat.theme.ThemeService;
 import com.example.chat.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,19 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final RoomMemberRepository roomMemberRepository;
     private final UserRepository userRepository;
+    private final MessageRepository messageRepository;
+    private final ThemeService themeService;
 
-    public RoomService(RoomRepository roomRepository, RoomMemberRepository roomMemberRepository, UserRepository userRepository) {
+    public RoomService(RoomRepository roomRepository,
+                       RoomMemberRepository roomMemberRepository,
+                       UserRepository userRepository,
+                       MessageRepository messageRepository,
+                       ThemeService themeService) {
         this.roomRepository = roomRepository;
         this.roomMemberRepository = roomMemberRepository;
         this.userRepository = userRepository;
+        this.messageRepository = messageRepository;
+        this.themeService = themeService;
     }
 
     @Transactional(readOnly = true)
@@ -95,4 +105,20 @@ public class RoomService {
 
         return RoomDto.from(room);
     }
+
+    @Transactional
+    public void deleteRoom(Long roomId, Long userId) {
+        var room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found"));
+
+        if (!userId.equals(room.getCreatedBy())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Only the room creator can delete this room");
+        }
+
+        messageRepository.deleteByRoomId(roomId);   // 1. chat history
+        roomMemberRepository.deleteByRoom(room);    // 2. memberships
+        themeService.deleteForRoom(roomId);         // 3. theme row + uploaded file
+        roomRepository.delete(room);                // 4. the room itself
+    }
 }
+

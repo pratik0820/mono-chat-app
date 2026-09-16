@@ -1,1 +1,23 @@
 .aider*
+
+# Ignore log directories and log files
+logs/
+*.log
+*.log.gz
+
+# Java & Spring Boot build files
+.mvn/
+target/
+*.jar
+*.war
+
+# Node / Mobile build & dependencies
+node_modules/
+.expo/
+dist/
+
+# IDE / OS metadata
+.idea/
+.vscode/
+.DS_Store
+*.swp

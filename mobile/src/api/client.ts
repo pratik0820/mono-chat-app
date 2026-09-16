@@ -105,6 +105,10 @@ export async function getRoom(roomId: number): Promise<RoomDto> {
   return res.data;
 }
 
+export async function deleteRoom(roomId: number): Promise<void> {
+  await api.delete(`/api/rooms/${roomId}`);
+}
+
 // ─── Message helpers ────────────────────────────────────────
 
 export type MessageType = 'USER' | 'AI' | 'SYSTEM' | 'STICKER' | 'GIF';
@@ -246,6 +250,60 @@ export async function getStickersInSet(
 ): Promise<{ set: StickerSetDto; stickers: StickerDto[] }> {
   const res = await api.get(`/api/stickers/sets/${setId}`);
   return res.data;
+}
+
+// ─── Room theme helpers ─────────────────────────────────────
+
+export interface RoomThemeDto {
+  /** Built-in theme id, when a built-in is active. */
+  themeId?: string;
+  /** Absolute or backend-relative URL of a custom background image. */
+  imageUrl?: string;
+  updatedBy: number;
+  updatedAt: string;
+}
+
+export async function getRoomTheme(roomId: number): Promise<RoomThemeDto | null> {
+  // Backend returns 204 (empty body) when the room uses the default theme
+  const res = await api.get<RoomThemeDto | ''>(`/api/rooms/${roomId}/theme`);
+  return res.data ? res.data : null;
+}
+
+/**
+ * Set a built-in theme for the room.
+ * Returns null when the backend reset the room to the default theme (204).
+ */
+export async function setRoomTheme(roomId: number, themeId: string): Promise<RoomThemeDto | null> {
+  const res = await api.put<RoomThemeDto | ''>(`/api/rooms/${roomId}/theme`, { themeId });
+  return res.data ? res.data : null;
+}
+
+/**
+ * Set a custom image theme for the room.
+ * @param localUri local file:// uri of the (already downscaled) image
+ * @param fileName preferred file name for the upload
+ */
+export async function uploadRoomThemeImage(
+  roomId: number,
+  localUri: string,
+  fileName = 'theme.jpg'
+): Promise<RoomThemeDto> {
+  const token = await getStoredToken();
+  const form = new FormData();
+  // RN FormData file part — expo/fetch or axios both accept this shape
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  form.append('image', { uri: localUri, name: fileName, type: 'image/jpeg' } as any);
+  const res = await api.put<RoomThemeDto>(`/api/rooms/${roomId}/theme`, form, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+  });
+  return res.data;
+}
+
+export async function clearRoomTheme(roomId: number): Promise<void> {
+  await api.delete(`/api/rooms/${roomId}/theme`);
 }
 
 // ─── Logout ──────────────────────────────────────────────────

@@ -194,17 +194,23 @@ export const QUICK_EMOJIS = [
 ];
 
 /**
- * Check if a string is a single emoji (or emoji with variant selectors).
- * Used to render large emojis in message bubbles.
+ * Check if a string consists ONLY of emojis (one or more, plus whitespace).
+ * Used to render large emojis in message bubbles, WhatsApp-style.
+ * Text that merely CONTAINS an emoji (e.g. "hi 😂") returns false and
+ * renders at normal text size.
  */
 export function isSingleEmoji(text: string): boolean {
   const trimmed = text.trim();
   if (trimmed.length === 0) return false;
-  // Remove variant selectors and ZWJ sequences
+
+  // Remove whitespace, variation selectors, ZWJ, and keycap combining marks
   const stripped = trimmed
-    .replace(/[\uFE00-\uFE0F\u200D\u20E3]/g, '')
-    .replace(/\s/g, '');
-  // Check if remaining characters are emoji
-  const emojiRegex = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/u;
-  return emojiRegex.test(stripped) && stripped.length <= 8;
+    .replace(/[\s\uFE00-\uFE0F\u200D\u20E3]/g, '');
+  if (stripped.length === 0) return false;
+
+  // Every remaining character must be part of an emoji sequence.
+  // Match full emoji sequences (base + optional modifiers/ZWJ chains).
+  const emojiSequence =
+    /^(?:(?:\p{RI}\p{RI}|\p{Extended_Pictographic}(?:\uFE0F|\p{EMod})*(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|\p{EMod})*)*|\p{Emoji}[\uFE0E\uFE0F]?))+$/u;
+  return emojiSequence.test(stripped);
 }

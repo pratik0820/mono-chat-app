@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.LinkedHashMap;
@@ -45,5 +46,10 @@ public class GlobalExceptionHandler {
 		body.put("error", HttpStatus.valueOf(status).getReasonPhrase());
 		body.put("message", message != null ? message : HttpStatus.valueOf(status).getReasonPhrase());
 		return ResponseEntity.status(status).body(body);
+	}
+
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	public ResponseEntity<Map<String, Object>> handleMaxUpload(MaxUploadSizeExceededException ex) {
+		return body(HttpStatus.PAYLOAD_TOO_LARGE.value(), "Image too large — max 5MB");
 	}
 }

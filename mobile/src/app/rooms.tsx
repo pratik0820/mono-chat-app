@@ -10,11 +10,13 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AxiosError } from 'axios';
 
 import {
   clearAuth,
   createRoom,
+  deleteRoom,
   getStoredToken,
   getStoredUser,
   joinRoom,
@@ -35,20 +37,26 @@ import { useTheme } from '@/hooks/use-theme';
 export default function RoomsScreen() {
   const router = useRouter();
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
   const [user, setUser] = useState<UserDto | null>(null);
   const [rooms, setRooms] = useState<RoomDto[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [stompConnected, setStompConnected] = useState(false);
   const { onlineUserIds } = usePresence();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [newRoomName, setNewRoomName] = useState('');
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-const [myRoomIds, setMyRoomIds] = useState<Set<number>>(new Set());
+  const [myRoomIds, setMyRoomIds] = useState<Set<number>>(new Set());
 
-const fetchRooms = useCallback(async () => {
+  // Delete-room flow (owner only)
+  const [menuRoom, setMenuRoom] = useState<RoomDto | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  const fetchRooms = useCallback(async () => {
     try {
       const allRooms = await listAllRooms();
       setRooms(allRooms);
@@ -69,7 +77,7 @@ const fetchRooms = useCallback(async () => {
     }
   }, [fetchRooms]);
 
-useEffect(() => {
+  useEffect(() => {
     (async () => {
       const token = await getStoredToken();
       if (!token) {
@@ -120,6 +128,39 @@ useEffect(() => {
 
   function handleOpenRoom(roomId: number) {
     router.push(`/rooms/${roomId}`);
+  }
+
+  async function handleDeleteRoom() {
+    if (!menuRoom) return;
+    setDeleteError(null);
+    setDeleting(true);
+    try {
+      await deleteRoom(menuRoom.id);
+      removeRoomLocally(menuRoom.id);
+      setMenuRoom(null);
+    } catch (err) {
+      const status = err instanceof AxiosError ? err.response?.status : undefined;
+      if (status === 404) {
+        // Room was already deleted — just remove it from the list locally.
+        removeRoomLocally(menuRoom.id);
+        setMenuRoom(null);
+      } else if (status === 403) {
+        setDeleteError('Only the room creator can delete this room.');
+      } else {
+        setDeleteError('Failed to delete room. Try again.');
+      }
+    } finally {
+      setDeleting(false);
+    }
+  }
+
+  function removeRoomLocally(roomId: number) {
+    setRooms((prev) => prev.filter((r) => r.id !== roomId));
+    setMyRoomIds((prev) => {
+      const next = new Set(prev);
+      next.delete(roomId);
+      return next;
+    });
   }
 
   if (loading) {
@@ -180,6 +221,7 @@ useEffect(() => {
           }
           renderItem={({ item }) => {
             const isMember = myRoomIds.has(item.id);
+            const isOwner = user != null && item.createdBy === user.id;
             return (
               <Pressable
                 onPress={() => isMember && handleOpenRoom(item.id)}
@@ -205,19 +247,41 @@ useEffect(() => {
                       <ThemedText style={styles.joinText}>Join</ThemedText>
                     </Pressable>
                   )}
+                  {isOwner && (
+                    <Pressable
+                      onPress={() => {
+                        setDeleteError(null);
+                        setMenuRoom(item);
+                      }}
+                      style={styles.moreButton}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                      accessibilityRole="button"
+                      accessibilityLabel={`Room options for ${item.name}`}>
+                      <ThemedText style={styles.moreIcon}>⋮</ThemedText>
+                    </Pressable>
+                  )}
                 </View>
               </Pressable>
             );
           }}
         />
 
-        <Button title="Log out" onPress={handleLogout} />
+        {/* marginBottom keeps the button above the system navigation bar
+            (gesture bar or 3-button nav) — it used to be hidden behind it. */}
+        <Button
+          title="Log out"
+          onPress={handleLogout}
+          style={{ marginBottom: insets.bottom }}
+        />
       </SafeAreaView>
       {/* Create Room Modal */}
       <Modal visible={modalVisible} transparent animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={() => setModalVisible(false)}>
           <Pressable
-            style={[styles.modalContent, { backgroundColor: theme.background }]}
+            style={[
+              styles.modalContent,
+              { backgroundColor: theme.background, paddingBottom: Spacing.five + insets.bottom },
+            ]}
             onPress={(e) => e.stopPropagation()}>
             <View style={[styles.modalHandle, { backgroundColor: theme.backgroundSelected }]} />
             <ThemedText type="title" style={styles.modalTitle}>
@@ -256,6 +320,53 @@ useEffect(() => {
                   onPress={handleCreateRoom}
                   loading={creating}
                   disabled={!newRoomName.trim()}
+                />
+              </View>
+            </View>
+          </Pressable>
+        </Pressable>
+      </Modal>
+      {/* Delete Room Modal (owner only) */}
+      <Modal
+        visible={menuRoom !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setMenuRoom(null)}>
+        <Pressable style={styles.modalOverlay} onPress={() => setMenuRoom(null)}>
+          <Pressable
+            style={[
+              styles.modalContent,
+              { backgroundColor: theme.background, paddingBottom: Spacing.five + insets.bottom },
+            ]}
+            onPress={(e) => e.stopPropagation()}>
+            <View style={[styles.modalHandle, { backgroundColor: theme.backgroundSelected }]} />
+            <ThemedText type="title" style={styles.modalTitle}>
+              Delete room
+            </ThemedText>
+            <ThemedText themeColor="textSecondary" style={styles.modalSubtitle}>
+              “{menuRoom?.name ?? ''}” and all its messages will be permanently deleted. This
+              cannot be undone.
+            </ThemedText>
+            {deleteError && (
+              <ThemedText themeColor="textSecondary" style={styles.error}>
+                {deleteError}
+              </ThemedText>
+            )}
+            <View style={styles.modalButtons}>
+              <View style={styles.modalButtonWrap}>
+                <Button
+                  title="Cancel"
+                  variant="secondary"
+                  onPress={() => setMenuRoom(null)}
+                  disabled={deleting}
+                />
+              </View>
+              <View style={styles.modalButtonWrap}>
+                <Button
+                  title="Delete"
+                  variant="danger"
+                  onPress={handleDeleteRoom}
+                  loading={deleting}
                 />
               </View>
             </View>
@@ -310,15 +421,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: Spacing.two,
   },
   roomName: {
     fontSize: 18,
     fontWeight: '600',
+    flexShrink: 1,
   },
   statusDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
+  },
+  moreButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  moreIcon: {
+    fontSize: 18,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   joinButton: {
     backgroundColor: '#3b82f6',

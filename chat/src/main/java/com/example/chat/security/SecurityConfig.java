@@ -36,7 +36,7 @@ public class SecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable)
 				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/error", "/api/auth/**", "/ws", "/ws/**", "/ws-sockjs/**").permitAll()
+						.requestMatchers("/error", "/api/auth/**", "/files/**", "/ws", "/ws/**", "/ws-sockjs/**").permitAll()
 						.anyRequest().authenticated())
 				.addFilterBefore(new JwtAuthFilter(jwtService, userRepository), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
