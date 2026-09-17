@@ -2,3 +2,5 @@
 2026-09-16 10:17:06.228 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-3] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] JWT valid for user 'pratik' (id=7), session=4863d29e-e87d-41b6-8b6e-d3f912286bb2
 2026-09-16 10:24:17.294 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] Received CONNECT frame, session=ff9c3146-862f-48de-aae2-73d806d2ec81
 2026-09-16 10:24:17.301 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] JWT valid for user 'pratik' (id=7), session=ff9c3146-862f-48de-aae2-73d806d2ec81
+2026-09-16 13:54:57.682 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-1] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] Received CONNECT frame, session=7fcd151c-b4b4-4975-b81c-5246c95a797b
+2026-09-16 13:54:58.820 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-1] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] JWT valid for user 'pratik' (id=7), session=7fcd151c-b4b4-4975-b81c-5246c95a797b

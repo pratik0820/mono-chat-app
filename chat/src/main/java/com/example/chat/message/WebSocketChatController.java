@@ -1,9 +1,11 @@
 package com.example.chat.message;
 
 import com.example.chat.message.dto.MessageDto;
+import com.example.chat.push.PushDispatcher;
 import com.example.chat.redis.RedisPublisher;
 import com.example.chat.room.Room;
 import com.example.chat.room.RoomMemberRepository;
+import com.example.chat.room.RoomRepository;
 import com.example.chat.user.User;
 import com.example.chat.user.UserRepository;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -23,13 +25,23 @@ public class WebSocketChatController {
     private final RoomMemberRepository roomMemberRepository;
     private final UserRepository userRepository;
     private final RedisPublisher redisPublisher;
+    private final PushDispatcher pushDispatcher;
+    private final RoomRepository roomRepository;
 
-    public WebSocketChatController(SimpMessagingTemplate messagingTemplate, MessageService messageService, RoomMemberRepository roomMemberRepository, UserRepository userRepository, RedisPublisher redisPublisher) {
+    public WebSocketChatController(SimpMessagingTemplate messagingTemplate,
+                                   MessageService messageService,
+                                   RoomMemberRepository roomMemberRepository,
+                                   UserRepository userRepository,
+                                   RedisPublisher redisPublisher,
+                                   PushDispatcher pushDispatcher,
+                                   RoomRepository roomRepository) {
         this.messagingTemplate = messagingTemplate;
         this.messageService = messageService;
         this.roomMemberRepository = roomMemberRepository;
         this.userRepository = userRepository;
         this.redisPublisher = redisPublisher;
+        this.pushDispatcher = pushDispatcher;
+        this.roomRepository = roomRepository;
     }
 
     /**
@@ -53,8 +65,9 @@ public class WebSocketChatController {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Room room = new Room();
-        room.setId(roomId);
+        // Real Room (needed for the room name in push notifications)
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
 
         if (!roomMemberRepository.existsByRoomAndUser(room, user)) {
             throw new RuntimeException("User is not a member of this room");
@@ -69,6 +82,9 @@ public class WebSocketChatController {
         // Publish to Redis
         ChatMessageEvent chatEvent = ChatMessageEvent.from(saved);
         redisPublisher.publishChatMessage(roomId, chatEvent);
+
+        // Push to OFFLINE members (async — returns immediately)
+        pushDispatcher.dispatchNewMessage(saved, roomId, room.getName(), user.getUsername());
     }
 
     /**

@@ -1,32 +1,33 @@
-2026-09-16 10:16:27.621 [34mINFO [0;39m [background-preinit] [] [36mo.h.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 9.1.0.Final
-2026-09-16 10:16:27.984 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Starting ChatApplication using Java 21.0.10 with PID 34172 (D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes started by dell in D:\d_folder\projects\projects-using-ai\Realtime-chat)
-2026-09-16 10:16:27.988 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-09-16 10:16:27.991 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
-2026-09-16 10:16:31.005 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
-2026-09-16 10:16:31.016 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-09-16 10:16:31.679 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 632 ms. Found 7 JPA repository interfaces.
-2026-09-16 10:16:31.857 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
-2026-09-16 10:16:31.861 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2026-09-16 10:16:32.018 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.message.MessageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.019 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.020 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.021 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.023 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerSetRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.026 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.theme.RoomThemeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.028 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.user.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2026-09-16 10:16:32.029 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 102 ms. Found 0 Redis repository interfaces.
-2026-09-16 10:16:34.647 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 8085 (http)
-2026-09-16 10:16:34.689 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8085"]
-2026-09-16 10:16:35.189 [34mINFO [0;39m [main] [] [36mo.s.b.w.c.s.WebApplicationContextInitializer[0;39m - Root WebApplicationContext: initialization completed in 7047 ms
-2026-09-16 10:16:35.520 [39mDEBUG[0;39m [main] [] [36mc.e.chat.common.RequestLoggingFilter[0;39m - Filter 'requestLoggingFilter' configured for use
-2026-09-16 10:16:35.522 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.common.MdcFilter[0;39m - Filter 'mdcFilter' configured for use
-2026-09-16 10:16:36.189 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.jpa[0;39m - HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-09-16 10:16:36.437 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000001: Hibernate ORM core version 7.4.1.Final
-2026-09-16 10:16:38.134 [34mINFO [0;39m [main] [] [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-09-16 10:16:38.262 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
-2026-09-16 10:16:38.981 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7e7391e8
-2026-09-16 10:16:38.985 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
-2026-09-16 10:16:39.218 [34mINFO [0;39m [main] [] [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+2026-09-17 18:17:40.760 [34mINFO [0;39m [background-preinit] [] [36mo.h.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-17 18:17:40.885 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Starting ChatApplication using Java 21.0.10 with PID 30648 (D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes started by dell in D:\d_folder\projects\projects-using-ai\Realtime-chat)
+2026-09-17 18:17:40.888 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-09-17 18:17:40.890 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 18:17:42.401 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17 18:17:42.404 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 18:17:42.746 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 321 ms. Found 8 JPA repository interfaces.
+2026-09-17 18:17:42.841 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17 18:17:42.843 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-17 18:17:42.876 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.message.MessageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.878 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.push.PushTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.878 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.880 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.881 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.882 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerSetRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.882 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.theme.RoomThemeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.883 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.user.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:17:42.884 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2026-09-17 18:17:44.620 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 8085 (http)
+2026-09-17 18:17:44.659 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8085"]
+2026-09-17 18:17:44.803 [34mINFO [0;39m [main] [] [36mo.s.b.w.c.s.WebApplicationContextInitializer[0;39m - Root WebApplicationContext: initialization completed in 3797 ms
+2026-09-17 18:17:44.955 [39mDEBUG[0;39m [main] [] [36mc.e.chat.common.RequestLoggingFilter[0;39m - Filter 'requestLoggingFilter' configured for use
+2026-09-17 18:17:44.959 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.common.MdcFilter[0;39m - Filter 'mdcFilter' configured for use
+2026-09-17 18:17:45.253 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.jpa[0;39m - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 18:17:45.380 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-17 18:17:46.265 [34mINFO [0;39m [main] [] [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 18:17:46.323 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+2026-09-17 18:17:46.688 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@61607ff0
+2026-09-17 18:17:46.690 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+2026-09-17 18:17:46.863 [34mINFO [0;39m [main] [] [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5432/chat]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -38,154 +39,159 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-09-16 10:16:43.033 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-09-16 10:16:43.063 [34mINFO [0;39m [main] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-09-16 10:16:44.815 [34mINFO [0;39m [main] [] [36mo.s.d.j.r.q.QueryEnhancerFactories[0;39m - Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-09-16 10:16:46.381 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Configuring RedisTemplate with JSON serialization...
-2026-09-16 10:16:46.392 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] RedisTemplate configured successfully
-2026-09-16 10:16:46.467 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Configuring RedisMessageListenerContainer...
-2026-09-16 10:16:46.474 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] RedisMessageListenerContainer configured successfully
-2026-09-16 10:16:46.505 [34mINFO [0;39m [main] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Subscribed to pattern: chat.room.*
-2026-09-16 10:16:49.865 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8085"]
-2026-09-16 10:16:49.948 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.TomcatWebServer[0;39m - Tomcat started on port 8085 (http) with context path '/'
-2026-09-16 10:16:52.228 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Started ChatApplication in 27.087 seconds (process running for 29.096)
-2026-09-16 10:16:52.249 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Connected to Redis successfully — PING response: PONG
-2026-09-16 10:16:58.435 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-2] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Connection established: id=4863d29e-e87d-41b6-8b6e-d3f912286bb2, remote=/127.0.0.1:56440
-2026-09-16 10:16:59.606 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-3] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] Received CONNECT frame, session=4863d29e-e87d-41b6-8b6e-d3f912286bb2
-2026-09-16 10:17:06.228 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-3] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] JWT valid for user 'pratik' (id=7), session=4863d29e-e87d-41b6-8b6e-d3f912286bb2
-2026-09-16 10:22:50.880 [1;31mERROR[0;39m [http-nio-0.0.0.0-8085-exec-6] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Transport error: id=4863d29e-e87d-41b6-8b6e-d3f912286bb2
-java.io.EOFException
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1339)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1223)
-	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:74)
-	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:184)
-	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:164)
-	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:152)
-	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-16 10:22:51.701 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-6] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Connection closed: id=4863d29e-e87d-41b6-8b6e-d3f912286bb2, status=CloseStatus[code=1006, reason=null]
-2026-09-16 10:23:58.099 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-7] [10a0e23c5480] [36mcom.example.chat[0;39m - ▶ RoomController.listAllRooms()
-2026-09-16 10:23:59.593 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-7] [10a0e23c5480] [36mcom.example.chat[0;39m - ◀ RoomController.listAllRooms returned in 1453ms → [RoomDto[id=1, name=Trial_room, ownerId=7, createdAt=2026-08-19T11:29:39.142470Z], RoomDto[id=2, name=new-room, ownerId=7, createdAt=2026-08-31T05:47:09.405462Z]]
-2026-09-16 10:24:00.287 [31mWARN [0;39m [http-nio-0.0.0.0-8085-exec-7] [10a0e23c5480] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/all from=127.0.0.1 status=200 duration=6568ms ua=okhttp/4.9.2 | *** SLOW REQUEST ***
-2026-09-16 10:24:00.871 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-10] [5ed14506a40a] [36mcom.example.chat[0;39m - ▶ RoomController.listRooms()
-2026-09-16 10:24:01.379 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-10] [5ed14506a40a] [36mcom.example.chat[0;39m - ◀ RoomController.listRooms returned in 507ms → [RoomDto[id=1, name=Trial_room, ownerId=7, createdAt=2026-08-19T11:29:39.142470Z], RoomDto[id=2, name=new-room, ownerId=7, createdAt=2026-08-31T05:47:09.405462Z]]
-2026-09-16 10:24:01.382 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-10] [5ed14506a40a] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms from=127.0.0.1 status=200 duration=534ms ua=okhttp/4.9.2
-2026-09-16 10:24:13.304 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [29060d525aa8] [36mcom.example.chat[0;39m - ▶ RoomController.getRoom(2)
-2026-09-16 10:24:13.331 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-1] [141374060e50] [36mcom.example.chat[0;39m - ▶ ChatController.getHistory(2, , )
-2026-09-16 10:24:13.549 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [29060d525aa8] [36mcom.example.chat[0;39m - ◀ RoomController.getRoom returned in 244ms → RoomDto[id=2, name=new-room, ownerId=7, createdAt=2026-08-31T05:47:09.405462Z]
-2026-09-16 10:24:13.814 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-4] [29060d525aa8] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/2 from=127.0.0.1 status=200 duration=545ms ua=okhttp/4.9.2
-2026-09-16 10:24:13.876 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-5] [357ab67398d2] [36mcom.example.chat[0;39m - ▶ ThemeController.get(2)
-2026-09-16 10:24:14.068 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-5] [357ab67398d2] [36mcom.example.chat[0;39m - ◀ ThemeController.get returned in 85ms → <204 NO_CONTENT No Content,[]>
-2026-09-16 10:24:14.090 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-5] [357ab67398d2] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/2/theme from=127.0.0.1 status=204 duration=271ms ua=okhttp/4.9.2
-2026-09-16 10:24:14.450 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-1] [141374060e50] [36mcom.example.chat[0;39m - ◀ ChatController.getHistory returned in 1084ms → [MessageDto[id=12, roomId=2, senderId=8, username=anthony, content=Yeah, we did it bro...., type=USER, createdAt=2026-09-02T07:38:52.334254Z], MessageDto[id=11, roomId=2, senderId=7, username=pratik, ...
-2026-09-16 10:24:14.490 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-1] [141374060e50] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/2/messages?limit=50 from=127.0.0.1 status=200 duration=1273ms ua=okhttp/4.9.2
-2026-09-16 10:24:16.640 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-9] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Connection established: id=ff9c3146-862f-48de-aae2-73d806d2ec81, remote=/127.0.0.1:62167
-2026-09-16 10:24:17.294 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] Received CONNECT frame, session=ff9c3146-862f-48de-aae2-73d806d2ec81
-2026-09-16 10:24:17.301 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [] [36mc.e.c.security.JwtChannelInterceptor[0;39m - [STOMP Auth] JWT valid for user 'pratik' (id=7), session=ff9c3146-862f-48de-aae2-73d806d2ec81
-2026-09-16 10:24:29.049 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-6] [58f5a5c9f44b] [36mcom.example.chat[0;39m - ▶ ThemeController.put(2, )
-2026-09-16 10:24:29.642 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-6] [58f5a5c9f44b] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.2.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=2, themeId='midnight', imageUrl='null', updatedBy=7}
-2026-09-16 10:24:29.646 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-6] [58f5a5c9f44b] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 593ms → <200 OK OK,RoomThemeDto[themeId=midnight, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:54:29.209435400Z],[]>
-2026-09-16 10:24:29.665 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-6] [58f5a5c9f44b] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/2/theme from=127.0.0.1 status=200 duration=756ms ua=okhttp/4.9.2 | req_body={"themeId":"midnight"}
-2026-09-16 10:24:29.691 [34mINFO [0;39m [redisMessageListenerContainer-1] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.2.theme, publishing to local sessions
-2026-09-16 10:24:29.917 [39mDEBUG[0;39m [redisMessageListenerContainer-1] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 2 to local sessions
-2026-09-16 10:25:03.308 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-10] [8c68a1d1e700] [36mcom.example.chat[0;39m - ▶ ThemeController.put(2, )
-2026-09-16 10:25:03.370 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-10] [8c68a1d1e700] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.2.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=2, themeId='mono', imageUrl='null', updatedBy=7}
-2026-09-16 10:25:03.371 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-10] [8c68a1d1e700] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 63ms → <200 OK OK,RoomThemeDto[themeId=mono, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:54:29.209435Z],[]>
-2026-09-16 10:25:03.372 [34mINFO [0;39m [redisMessageListenerContainer-2] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.2.theme, publishing to local sessions
-2026-09-16 10:25:03.373 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-10] [8c68a1d1e700] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/2/theme from=127.0.0.1 status=200 duration=78ms ua=okhttp/4.9.2 | req_body={"themeId":"mono"}
-2026-09-16 10:25:03.375 [39mDEBUG[0;39m [redisMessageListenerContainer-2] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 2 to local sessions
-2026-09-16 10:25:11.262 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [052ae7cd437d] [36mcom.example.chat[0;39m - ▶ ThemeController.put(2, )
-2026-09-16 10:25:11.292 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-4] [052ae7cd437d] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.2.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=2, themeId='sunset', imageUrl='null', updatedBy=7}
-2026-09-16 10:25:11.293 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [052ae7cd437d] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 28ms → <200 OK OK,RoomThemeDto[themeId=sunset, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:55:03.322619Z],[]>
-2026-09-16 10:25:11.294 [34mINFO [0;39m [redisMessageListenerContainer-3] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.2.theme, publishing to local sessions
-2026-09-16 10:25:11.297 [39mDEBUG[0;39m [redisMessageListenerContainer-3] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 2 to local sessions
-2026-09-16 10:25:11.300 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-4] [052ae7cd437d] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/2/theme from=127.0.0.1 status=200 duration=62ms ua=okhttp/4.9.2 | req_body={"themeId":"sunset"}
-2026-09-16 10:25:18.181 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-9] [e54421c687d4] [36mcom.example.chat[0;39m - ▶ ThemeController.put(2, )
-2026-09-16 10:25:18.202 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-9] [e54421c687d4] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.2.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=2, themeId='aurora', imageUrl='null', updatedBy=7}
-2026-09-16 10:25:18.203 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-9] [e54421c687d4] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 20ms → <200 OK OK,RoomThemeDto[themeId=aurora, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:55:11.281491Z],[]>
-2026-09-16 10:25:18.204 [34mINFO [0;39m [redisMessageListenerContainer-4] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.2.theme, publishing to local sessions
-2026-09-16 10:25:18.209 [39mDEBUG[0;39m [redisMessageListenerContainer-4] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 2 to local sessions
-2026-09-16 10:25:18.208 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-9] [e54421c687d4] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/2/theme from=127.0.0.1 status=200 duration=74ms ua=okhttp/4.9.2 | req_body={"themeId":"aurora"}
-2026-09-16 10:25:45.788 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-3] [24850b910b03] [36mcom.example.chat[0;39m - ▶ RoomController.getRoom(1)
-2026-09-16 10:25:45.796 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-3] [24850b910b03] [36mcom.example.chat[0;39m - ◀ RoomController.getRoom returned in 7ms → RoomDto[id=1, name=Trial_room, ownerId=7, createdAt=2026-08-19T11:29:39.142470Z]
-2026-09-16 10:25:45.797 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-3] [24850b910b03] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/1 from=127.0.0.1 status=200 duration=17ms ua=okhttp/4.9.2
-2026-09-16 10:25:45.809 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-6] [71e9d74b2fcd] [36mcom.example.chat[0;39m - ▶ ChatController.getHistory(1, , )
-2026-09-16 10:25:45.836 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-6] [71e9d74b2fcd] [36mcom.example.chat[0;39m - ◀ ChatController.getHistory returned in 25ms → [MessageDto[id=15, roomId=1, senderId=7, username=pratik, content=https://static.klipy.com/ii/8ce8357c78ea940b9c2015daf05ce1a5/ea/72/WGDcNWlt.gif, type=GIF, createdAt=2026-09-10T10:11:10.914565Z], Mes...
-2026-09-16 10:25:45.849 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-6] [71e9d74b2fcd] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/1/messages?limit=50 from=127.0.0.1 status=200 duration=46ms ua=okhttp/4.9.2
-2026-09-16 10:25:46.226 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [ad294b191b08] [36mcom.example.chat[0;39m - ▶ ThemeController.get(1)
-2026-09-16 10:25:46.244 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-4] [ad294b191b08] [36mcom.example.chat[0;39m - ◀ ThemeController.get returned in 16ms → <204 NO_CONTENT No Content,[]>
-2026-09-16 10:25:46.246 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-4] [ad294b191b08] [36mc.e.chat.common.RequestLoggingFilter[0;39m - GET /api/rooms/1/theme from=127.0.0.1 status=204 duration=47ms ua=okhttp/4.9.2
-2026-09-16 10:25:57.331 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-5] [30be9f2dd70c] [36mcom.example.chat[0;39m - ▶ ThemeController.put(1, )
-2026-09-16 10:25:57.420 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-5] [30be9f2dd70c] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.1.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=1, themeId='midnight', imageUrl='null', updatedBy=7}
-2026-09-16 10:25:57.422 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-5] [30be9f2dd70c] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 91ms → <200 OK OK,RoomThemeDto[themeId=midnight, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:55:57.367720300Z],[]>
-2026-09-16 10:25:57.424 [34mINFO [0;39m [redisMessageListenerContainer-5] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.1.theme, publishing to local sessions
-2026-09-16 10:25:57.424 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-5] [30be9f2dd70c] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/1/theme from=127.0.0.1 status=200 duration=113ms ua=okhttp/4.9.2 | req_body={"themeId":"midnight"}
-2026-09-16 10:25:57.426 [39mDEBUG[0;39m [redisMessageListenerContainer-5] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 1 to local sessions
-2026-09-16 10:26:05.087 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-1] [18bd4baae4a4] [36mcom.example.chat[0;39m - ▶ ThemeController.put(1, )
-2026-09-16 10:26:05.163 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-1] [18bd4baae4a4] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.1.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=1, themeId='forest', imageUrl='null', updatedBy=7}
-2026-09-16 10:26:05.165 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-1] [18bd4baae4a4] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 53ms → <200 OK OK,RoomThemeDto[themeId=forest, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:55:57.367720Z],[]>
-2026-09-16 10:26:05.205 [34mINFO [0;39m [redisMessageListenerContainer-6] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.1.theme, publishing to local sessions
-2026-09-16 10:26:05.219 [39mDEBUG[0;39m [redisMessageListenerContainer-6] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 1 to local sessions
-2026-09-16 10:26:05.219 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-1] [18bd4baae4a4] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/1/theme from=127.0.0.1 status=200 duration=156ms ua=okhttp/4.9.2 | req_body={"themeId":"forest"}
-2026-09-16 10:26:13.789 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-9] [2e27dc2d9941] [36mcom.example.chat[0;39m - ▶ ThemeController.put(1, )
-2026-09-16 10:26:13.809 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-9] [2e27dc2d9941] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.1.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=1, themeId='peach', imageUrl='null', updatedBy=7}
-2026-09-16 10:26:13.813 [34mINFO [0;39m [redisMessageListenerContainer-7] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.1.theme, publishing to local sessions
-2026-09-16 10:26:13.812 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-9] [2e27dc2d9941] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 22ms → <200 OK OK,RoomThemeDto[themeId=peach, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:56:05.146250Z],[]>
-2026-09-16 10:26:13.815 [39mDEBUG[0;39m [redisMessageListenerContainer-7] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 1 to local sessions
-2026-09-16 10:26:13.819 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-9] [2e27dc2d9941] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/1/theme from=127.0.0.1 status=200 duration=56ms ua=okhttp/4.9.2 | req_body={"themeId":"peach"}
-2026-09-16 10:26:20.101 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-8] [89d335f0521f] [36mcom.example.chat[0;39m - ▶ ThemeController.put(1, )
-2026-09-16 10:26:20.118 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [89d335f0521f] [36mc.example.chat.redis.RedisPublisher[0;39m - [Redis] Published to chat.room.1.theme: ThemeUpdatedEvent{type='THEME_UPDATED', roomId=1, themeId='candy', imageUrl='null', updatedBy=7}
-2026-09-16 10:26:20.119 [39mDEBUG[0;39m [http-nio-0.0.0.0-8085-exec-8] [89d335f0521f] [36mcom.example.chat[0;39m - ◀ ThemeController.put returned in 16ms → <200 OK OK,RoomThemeDto[themeId=candy, imageUrl=null, updatedBy=7, updatedAt=2026-09-16T04:56:13.797453Z],[]>
-2026-09-16 10:26:20.128 [34mINFO [0;39m [redisMessageListenerContainer-8] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Received from chat.room.1.theme, publishing to local sessions
-2026-09-16 10:26:20.129 [39mDEBUG[0;39m [redisMessageListenerContainer-8] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Pushed theme update for room 1 to local sessions
-2026-09-16 10:26:20.130 [34mINFO [0;39m [http-nio-0.0.0.0-8085-exec-8] [89d335f0521f] [36mc.e.chat.common.RequestLoggingFilter[0;39m - PUT /api/rooms/1/theme from=127.0.0.1 status=200 duration=39ms ua=okhttp/4.9.2 | req_body={"themeId":"candy"}
-2026-09-16 10:28:16.017 [34mINFO [0;39m [SpringApplicationShutdownHook] [] [36mo.s.boot.tomcat.GracefulShutdown[0;39m - Commencing graceful shutdown. Waiting for active requests to complete
-2026-09-16 10:28:16.036 [34mINFO [0;39m [tomcat-shutdown] [] [36mo.s.boot.tomcat.GracefulShutdown[0;39m - Graceful shutdown complete
-2026-09-16 10:28:16.050 [1;31mERROR[0;39m [SpringApplicationShutdownHook] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Transport error: id=ff9c3146-862f-48de-aae2-73d806d2ec81
-java.io.IOException: java.nio.channels.ClosedChannelException
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:329)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:269)
-	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:777)
-	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:574)
-	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:541)
-	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:529)
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketSession.closeInternal(StandardWebSocketSession.java:226)
-	at org.springframework.web.socket.adapter.AbstractWebSocketSession.close(AbstractWebSocketSession.java:142)
-	at org.springframework.web.socket.handler.WebSocketSessionDecorator.close(WebSocketSessionDecorator.java:160)
-	at org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator.close(ConcurrentWebSocketSessionDecorator.java:278)
-	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:305)
-	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:318)
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:480)
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:645)
+2026-09-17 18:17:48.971 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 18:17:48.984 [34mINFO [0;39m [main] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 18:17:49.784 [34mINFO [0;39m [main] [] [36mo.s.d.j.r.q.QueryEnhancerFactories[0;39m - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 18:17:51.143 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Configuring RedisTemplate with JSON serialization...
+2026-09-17 18:17:51.148 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] RedisTemplate configured successfully
+2026-09-17 18:17:51.195 [31mWARN [0;39m [main] [] [36mo.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext[0;39m - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chatController' defined in file [D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes\com\example\chat\message\ChatController.class]: Unsatisfied dependency expressed through constructor parameter 3: Error creating bean with name 'pushDispatcher' defined in file [D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes\com\example\chat\push\PushDispatcher.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'expoPushSender' defined in file [D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes\com\example\chat\push\ExpoPushSender.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.web.client.RestClient$Builder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2026-09-17 18:17:51.211 [34mINFO [0;39m [main] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 18:17:51.214 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown initiated...
+2026-09-17 18:17:51.217 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown completed.
+2026-09-17 18:17:51.246 [34mINFO [0;39m [main] [] [36mo.s.b.a.l.ConditionEvaluationReportLogger[0;39m - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-17 18:17:51.270 [1;31mERROR[0;39m [main] [] [36mo.s.b.d.LoggingFailureAnalysisReporter[0;39m - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.chat.push.ExpoPushSender required a bean of type 'org.springframework.web.client.RestClient$Builder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.web.client.RestClient$Builder' in your configuration.
+
+2026-09-17 18:22:35.050 [34mINFO [0;39m [background-preinit] [] [36mo.h.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 9.1.0.Final
+2026-09-17 18:22:35.170 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Starting ChatApplication using Java 21.0.10 with PID 35512 (D:\d_folder\projects\projects-using-ai\Realtime-chat\chat\target\classes started by dell in D:\d_folder\projects\projects-using-ai\Realtime-chat)
+2026-09-17 18:22:35.176 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-09-17 18:22:35.179 [34mINFO [0;39m [main] [] [36mcom.example.chat.ChatApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+2026-09-17 18:22:37.040 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17 18:22:37.044 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-17 18:22:37.440 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 374 ms. Found 8 JPA repository interfaces.
+2026-09-17 18:22:37.524 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-17 18:22:37.526 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-17 18:22:37.559 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.message.MessageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.562 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.push.PushTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.563 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.563 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.room.RoomRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.564 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.565 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.sticker.StickerSetRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.566 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.theme.RoomThemeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.567 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationExtensionSupport[0;39m - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.chat.user.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-09-17 18:22:37.568 [34mINFO [0;39m [main] [] [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2026-09-17 18:22:39.048 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 8085 (http)
+2026-09-17 18:22:39.074 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-0.0.0.0-8085"]
+2026-09-17 18:22:39.212 [34mINFO [0;39m [main] [] [36mo.s.b.w.c.s.WebApplicationContextInitializer[0;39m - Root WebApplicationContext: initialization completed in 3882 ms
+2026-09-17 18:22:39.344 [39mDEBUG[0;39m [main] [] [36mc.e.chat.common.RequestLoggingFilter[0;39m - Filter 'requestLoggingFilter' configured for use
+2026-09-17 18:22:39.345 [39mDEBUG[0;39m [main] [] [36mcom.example.chat.common.MdcFilter[0;39m - Filter 'mdcFilter' configured for use
+2026-09-17 18:22:39.620 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.jpa[0;39m - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-09-17 18:22:39.765 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-09-17 18:22:40.729 [34mINFO [0;39m [main] [] [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-17 18:22:40.797 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+2026-09-17 18:22:41.161 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6839d03b
+2026-09-17 18:22:41.164 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+2026-09-17 18:22:41.342 [34mINFO [0;39m [main] [] [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/chat]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.2
+	Default catalog/schema: chat/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-17 18:22:43.459 [34mINFO [0;39m [main] [] [36morg.hibernate.orm.core[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-17 18:22:43.472 [34mINFO [0;39m [main] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 18:22:44.513 [34mINFO [0;39m [main] [] [36mo.s.d.j.r.q.QueryEnhancerFactories[0;39m - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-17 18:22:46.526 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Configuring RedisTemplate with JSON serialization...
+2026-09-17 18:22:46.532 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] RedisTemplate configured successfully
+2026-09-17 18:22:47.063 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] Configuring RedisMessageListenerContainer...
+2026-09-17 18:22:47.068 [34mINFO [0;39m [main] [] [36mcom.example.chat.config.RedisConfig[0;39m - [Redis] RedisMessageListenerContainer configured successfully
+2026-09-17 18:22:47.085 [34mINFO [0;39m [main] [] [36mc.example.chat.redis.RedisSubscriber[0;39m - [Redis] Subscribed to pattern: chat.room.*
+2026-09-17 18:22:48.725 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-0.0.0.0-8085"]
+2026-09-17 18:22:48.754 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.TomcatWebServer[0;39m - Tomcat started on port 8085 (http) with context path '/'
+2026-09-17 18:22:49.518 [34mINFO [0;39m [main] [] [36mo.s.boot.tomcat.GracefulShutdown[0;39m - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-17 18:22:49.519 [34mINFO [0;39m [tomcat-shutdown] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Pausing ProtocolHandler ["http-nio-0.0.0.0-8085"]
+2026-09-17 18:22:49.527 [34mINFO [0;39m [tomcat-shutdown] [] [36mo.s.boot.tomcat.GracefulShutdown[0;39m - Graceful shutdown complete
+2026-09-17 18:22:49.528 [34mINFO [0;39m [main] [] [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Stopping ProtocolHandler ["http-nio-0.0.0.0-8085"]
+2026-09-17 18:22:49.541 [31mWARN [0;39m [main] [] [36mo.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext[0;39m - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'redisMessageListenerContainer'
+2026-09-17 18:22:49.549 [34mINFO [0;39m [main] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-17 18:22:49.553 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown initiated...
+2026-09-17 18:22:49.566 [34mINFO [0;39m [main] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown completed.
+2026-09-17 18:22:49.586 [34mINFO [0;39m [main] [] [36mo.s.b.a.l.ConditionEvaluationReportLogger[0;39m - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-17 18:22:49.608 [1;31mERROR[0;39m [main] [] [36mo.s.boot.SpringApplication[0;39m - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'redisMessageListenerContainer'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:423)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:409)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:613)
 	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:448)
-	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:337)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1199)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:176)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1153)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:379)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:306)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1013)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.chat.ChatApplication.main(ChatApplication.java:13)
+Caused by: org.springframework.data.redis.listener.adapter.RedisListenerExecutionFailedException: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:389)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.start(RedisMessageListenerContainer.java:366)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:420)
+	... 14 common frames omitted
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1873)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1804)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1601)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1581)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1542)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1578)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1260)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:1056)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.lambda$initialize$0(RedisMessageListenerContainer.java:1272)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.doInLock(RedisMessageListenerContainer.java:1486)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.initialize(RedisMessageListenerContainer.java:1266)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.doSubscribe(RedisMessageListenerContainer.java:436)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:410)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:380)
+	... 16 common frames omitted
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:63)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:41)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:315)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:220)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:113)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:113)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1802)
+	... 28 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:694)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:384)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:432)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1195)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.nio.channels.ClosedChannelException
-	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:286)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1697)
-	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:1004)
-	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1377)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1306)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1281)
-	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:167)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:524)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:316)
-	... 23 common frames omitted
-2026-09-16 10:28:16.053 [34mINFO [0;39m [SpringApplicationShutdownHook] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Connection closed: id=ff9c3146-862f-48de-aae2-73d806d2ec81, status=CloseStatus[code=1001, reason=null]
-2026-09-16 10:28:16.126 [34mINFO [0;39m [SpringApplicationShutdownHook] [] [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-09-16 10:28:16.159 [34mINFO [0;39m [SpringApplicationShutdownHook] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown initiated...
-2026-09-16 10:28:16.192 [34mINFO [0;39m [SpringApplicationShutdownHook] [] [36mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Shutdown completed.

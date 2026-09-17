@@ -10,6 +10,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
 import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
+import { registerForPushNotificationsAsync } from '@/lib/pushToken';
 
 function errorMessage(e: unknown): string {
   const err = e as { response?: { data?: { message?: string } } };
@@ -36,6 +37,8 @@ export default function RegisterScreen() {
     try {
       const auth = await registerRequest(username.trim(), email.trim(), password);
       await storeAuth(auth);
+      // Register this device for push under the fresh JWT (idempotent).
+      void registerForPushNotificationsAsync();
       router.replace('/rooms');
     } catch (e) {
       setError(errorMessage(e));

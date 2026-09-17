@@ -38,6 +38,9 @@ yarn-error.*
 
 example
 
+# Firebase config (contains project identifiers; injected per-environment)
+google-services.json
+
 # generated native folders
 /ios
 /android

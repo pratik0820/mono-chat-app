@@ -36,3 +36,6 @@ build/
 logs/
 
 uploads/
+
+# Firebase service-account key — NEVER commit (grants full Firebase admin access)
+*-firebase-adminsdk-*.json

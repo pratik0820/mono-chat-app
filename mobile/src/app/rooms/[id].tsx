@@ -35,6 +35,7 @@ import {
   resolveRoomTheme,
 } from '@/constants/chatThemes';
 import { isSingleEmoji } from '@/data/emojis';
+import { setCurrentRoomId } from '@/lib/notificationHandlers';
 import { useChat } from '@/hooks/useChat';
 import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
 import { useTheme } from '@/hooks/use-theme';
@@ -70,6 +71,13 @@ export default function ChatScreen() {
 
   const flatListRef = useRef<FlatList>(null);
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Track the room on screen so foreground push banners for THIS room can be
+  // suppressed (its messages already arrive live via STOMP). Cleared on unmount.
+  useEffect(() => {
+    setCurrentRoomId(id);
+    return () => setCurrentRoomId(null);
+  }, [id]);
 
   // Get current user and room info
   useEffect(() => {

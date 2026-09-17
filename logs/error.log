@@ -1,54 +1,82 @@
-2026-09-16 10:22:50.880 [1;31mERROR[0;39m [http-nio-0.0.0.0-8085-exec-6] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Transport error: id=4863d29e-e87d-41b6-8b6e-d3f912286bb2
-java.io.EOFException
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1339)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1223)
-	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:74)
-	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:184)
-	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:164)
-	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:152)
-	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-2026-09-16 10:28:16.050 [1;31mERROR[0;39m [SpringApplicationShutdownHook] [] [36mc.e.chat.config.WebSocketConfig[0;39m - [WS] Transport error: id=ff9c3146-862f-48de-aae2-73d806d2ec81
-java.io.IOException: java.nio.channels.ClosedChannelException
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:329)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlock(WsRemoteEndpointImplBase.java:269)
-	at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:777)
-	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:574)
-	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:541)
-	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:529)
-	at org.springframework.web.socket.adapter.standard.StandardWebSocketSession.closeInternal(StandardWebSocketSession.java:226)
-	at org.springframework.web.socket.adapter.AbstractWebSocketSession.close(AbstractWebSocketSession.java:142)
-	at org.springframework.web.socket.handler.WebSocketSessionDecorator.close(WebSocketSessionDecorator.java:160)
-	at org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator.close(ConcurrentWebSocketSessionDecorator.java:278)
-	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:305)
-	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:318)
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:480)
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:645)
+2026-09-17 18:17:51.270 [1;31mERROR[0;39m [main] [] [36mo.s.b.d.LoggingFailureAnalysisReporter[0;39m - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.chat.push.ExpoPushSender required a bean of type 'org.springframework.web.client.RestClient$Builder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.web.client.RestClient$Builder' in your configuration.
+
+2026-09-17 18:22:49.608 [1;31mERROR[0;39m [main] [] [36mo.s.boot.SpringApplication[0;39m - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'redisMessageListenerContainer'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:423)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:409)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:613)
 	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:448)
-	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:337)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1199)
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:176)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1153)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:379)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:306)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1013)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.example.chat.ChatApplication.main(ChatApplication.java:13)
+Caused by: org.springframework.data.redis.listener.adapter.RedisListenerExecutionFailedException: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:389)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.start(RedisMessageListenerContainer.java:366)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:420)
+	... 14 common frames omitted
+Caused by: org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1873)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1804)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1601)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.lambda$getConnection$0(LettuceConnectionFactory.java:1581)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.doInLock(LettuceConnectionFactory.java:1542)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1578)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1260)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:1056)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.lambda$initialize$0(RedisMessageListenerContainer.java:1272)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.doInLock(RedisMessageListenerContainer.java:1486)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer$Subscriber.initialize(RedisMessageListenerContainer.java:1266)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.doSubscribe(RedisMessageListenerContainer.java:436)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:410)
+	at org.springframework.data.redis.listener.RedisMessageListenerContainer.lazyListen(RedisMessageListenerContainer.java:380)
+	... 16 common frames omitted
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:63)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:41)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:315)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:220)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:113)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:113)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1802)
+	... 28 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:694)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:384)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:432)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1195)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.nio.channels.ClosedChannelException
-	at org.apache.tomcat.util.net.NioChannel$1.write(NioChannel.java:286)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper$NioOperationState.run(NioEndpoint.java:1697)
-	at org.apache.tomcat.util.net.SocketWrapperBase$OperationState.start(SocketWrapperBase.java:1004)
-	at org.apache.tomcat.util.net.SocketWrapperBase.vectoredOperation(SocketWrapperBase.java:1377)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1306)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:1281)
-	at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:167)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:524)
-	at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendMessageBlockInternal(WsRemoteEndpointImplBase.java:316)
-	... 23 common frames omitted

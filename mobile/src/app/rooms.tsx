@@ -31,6 +31,7 @@ import { Button } from '@/components/button';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
+import { unregisterPushToken } from '@/lib/pushToken';
 import { usePresence } from '@/hooks/usePresence';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -92,6 +93,9 @@ export default function RoomsScreen() {
   }, [router, fetchRooms]);
 
   async function handleLogout() {
+    // Unregister push FIRST — while the JWT is still stored — so the backend
+    // stops pushing to this device for the previous user.
+    await unregisterPushToken();
     await logoutRequest();
     router.replace('/');
   }

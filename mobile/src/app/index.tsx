@@ -10,6 +10,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
 import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
+import { registerForPushNotificationsAsync } from '@/lib/pushToken';
 
 function errorMessage(e: unknown): string {
   const err = e as any;
@@ -53,6 +54,9 @@ export default function LoginScreen() {
     try {
       const auth = await loginRequest(username.trim(), password);
       await storeAuth(auth);
+      // Register this device for push under the fresh JWT. Idempotent — the
+      // root layout also calls it on relaunch when a stored token exists.
+      void registerForPushNotificationsAsync();
       router.replace('/rooms');
     } catch (e) {
       console.error('[Login] Error:', e);

@@ -16,6 +16,10 @@ node_modules/
 .expo/
 dist/
 
+# Firebase configs (injected per-environment; never commit)
+google-services.json
+*-firebase-adminsdk-*.json
+
 # IDE / OS metadata
 .idea/
 .vscode/
